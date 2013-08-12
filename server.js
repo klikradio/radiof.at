@@ -16,6 +16,7 @@ app.post('/', function(req, res) {
 		// Convert an MP3
 		exec('./PROCESSMP3 ' + req.files.song.path, function(err, stdout, stderr) {
 			console.log("We're done!!!");
+			console.log(stdout);
 			res.sendfile(req.files.song.path + ".mp3");
 		});
 	}
