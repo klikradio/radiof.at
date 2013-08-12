@@ -1,0 +1,17 @@
+#!/bin/bash
+
+for f in *.mp3; do
+	echo "Decompressing $f..."
+	avconv -i "$f" "${f%.mp3}.wav"
+	echo "Deleting $f..."
+	rm "$f"
+	echo "Speeding up $f..."
+	sox -S "${f%.mp3}.wav" "${f%.mp3}2.wav" speed 1.01
+	rm "${f%.mp3}.wav"
+	echo "Procesing $f..."
+	./stereo_tool_cmd "${f%.mp3}2.wav" "${f%.mp3}3.wav" -s ~/current.sts
+	rm "${f%.mp3}2.wav"
+	echo "Compressing $f..."
+	lame -b 256 "${f%.mp3}3.wav" "${f%.mp3}.mp3"
+	rm "${f%.mp3}3.wav"
+done

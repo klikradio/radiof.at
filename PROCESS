@@ -14,8 +14,6 @@ for f in *.m4a; do
 	rm "${f%.m4a}3.wav"
 	echo "Tagging $f..."
 	./tags.py "$f" "${f%.m4a}.mp3"
-	echo "Uploading $f..."
-	#curl -T "${f%.m4a}.mp3" ftp://apple.wavestreamer.com/ --user 1d3588886517dd8fea57b0b41a214d331c9235a9:Phs09Nu14
 	echo "Deleting $f..."
 	rm "$f"
 done
