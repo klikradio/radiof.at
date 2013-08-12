@@ -4,7 +4,6 @@
 	"description": "Make your music sound like the radio",
 	"author": "Jake Wood, KLIK Radio",
 	"dependencies": {
-		"express": "*",
-		"sox": "*"
+		"express": "*"
 	}
 }

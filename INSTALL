@@ -4,6 +4,7 @@ sudo add-apt-repository ppa:chris-lea/node.js
 
 # Install apt-get dependencies
 sudo apt-get install nodejs libsox-dev
+# TODO: make sure all the audio dependencies are in place
 
 # Install mutagen
 wget https://mutagen.googlecode.com/files/mutagen-1.21.tar.gz
@@ -13,7 +14,12 @@ cd mutagen-1.21
 ./setup.py build
 sudo ./setup.py install
 cd ..
-
 # TODO: can we delete the mutagen directory once it's created?
 
+# Install Stereo Tool
+cd bin
+wget http://www.stereotool.com/download/stereo_tool_cmd
+cd ..
+
+# Install Node dependencies
 sudo npm install
