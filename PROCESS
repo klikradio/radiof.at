@@ -1,0 +1,19 @@
+#!/bin/bash
+
+for f in *.m4a; do
+	echo "Decompressing $f..."
+	faad "$f"
+	echo "Speeding up $f..."
+	sox -S "${f%.m4a}.wav" "${f%.m4a}2.wav" speed 1.01
+	rm "${f%.m4a}.wav"
+	echo "Procesing $f..."
+	./stereo_tool_cmd "${f%.m4a}2.wav" "${f%.m4a}3.wav" -s ~/current.sts
+	rm "${f%.m4a}2.wav"
+	echo "Compressing $f..."
+	lame -b 256 "${f%.m4a}3.wav" "${f%.m4a}.mp3"
+	rm "${f%.m4a}3.wav"
+	echo "Tagging $f..."
+	./tags.py "$f" "${f%.m4a}.mp3"
+	echo "Deleting $f..."
+	rm "$f"
+done
