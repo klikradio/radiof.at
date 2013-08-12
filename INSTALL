@@ -1,16 +1,18 @@
 # Update apt-get
-sudo apt-get install python-software-properties
-sudo add-apt-repository ppa:chris-lea/node.js
+#sudo apt-get install python-software-properties
+#sudo add-apt-repository ppa:chris-lea/node.js
 
 # Install apt-get dependencies
-sudo apt-get install nodejs libsox-dev
+#sudo apt-get install nodejs libsox-dev
 
 # Install mutagen
 wget https://mutagen.googlecode.com/files/mutagen-1.21.tar.gz
 tar -zxf mutagen-1.21.tar.gz
 rm mutagen-1.21.tar.gz
-./mutagen-1.21/setup.py build
-su -c "mutagen-1.21/setup.py install"
+cd mutagen-1.21
+./setup.py build
+sudo ./setup.py install
+cd ..
 
 # TODO: can we delete the mutagen directory once it's created?
 
