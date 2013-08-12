@@ -14,8 +14,9 @@ app.get('/', function(req, res) {
 app.post('/', function(req, res) {
 	if (req.files.song.type == 'audio/mp3') {
 		// Convert an MP3
-		exec('./PROCESSMP3 ' + req.files.song.path, function(err, stdout, stderr) {
+		exec('./PROCESSMP3 ' + req.files.song.path, { timeout: 0, maxBuffer: 0 }, function(err, stdout, stderr) {
 			console.log("We're done!!!");
+			console.log(stdout);
 			res.sendfile(req.files.song.path + ".mp3");
 		});
 	}
