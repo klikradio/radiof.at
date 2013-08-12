@@ -12,15 +12,13 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-	res.send(req.files);
-
-	var tempFileName = req.files.song.path;
-	var realFileName = req.files.song.name;
-
-	exec('avconv -i "' + tempFileName + '" "' + tempFileName + '.wav"', function(err, stdout, stderr) {
-		console.log("We're done!!!");
-		console.log(tempFileName);
-	});
+	if (req.files.song.type == 'audio/mp3') {
+		// Convert an MP3
+		exec('./PROCESSMP3 ' + req.files.song.path, function(err, stdout, stderr) {
+			console.log("We're done!!!");
+			res.sendfile(req.files.song.path + ".mp3");
+		});
+	}
 });
 
 app.listen(process.env.PORT || DEBUG_PORT);
