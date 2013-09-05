@@ -3,7 +3,7 @@ sudo apt-get install python-software-properties
 sudo add-apt-repository ppa:chris-lea/node.js
 
 # Install apt-get dependencies
-sudo apt-get install nodejs libsox-dev
+sudo apt-get install nodejs sox lame faad
 # TODO: make sure all the audio dependencies are in place
 
 # Install mutagen
