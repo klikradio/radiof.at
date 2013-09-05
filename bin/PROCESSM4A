@@ -3,10 +3,10 @@
 echo "Decompressing ${1}..."
 faad "${1}"
 echo "Speeding up ${1}..."
-sox -S "${1}.wav" "${1}2.wav" speed 1.01
+sox -S "${1}.wav" "${1}2.wav" speed 1.02
 rm "${1}.wav"
 echo "Procesing ${1}..."
-./stereo_tool_cmd "${1}2.wav" "${1}3.wav" -s ~/current.sts
+./stereo_tool_cmd "${1}2.wav" "${1}3.wav" -s ../radiofat.sts
 rm "${1}2.wav"
 echo "Compressing ${1}..."
 lame -b 256 "${1}3.wav" "${1}.mp3"

@@ -1,2 +1,4 @@
 node_modules
 .DS_Store
+bin/stereo_tool_cmd
+mutagen*

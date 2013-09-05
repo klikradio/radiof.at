@@ -19,8 +19,15 @@ app.post('/', function(req, res) {
 			console.log("Send e-mail to this person!");
 		});
 	}
-	else if (req.files.song.type == 'audio/m4a') {
+	else if (req.files.song.type == 'audio/m4a' || req.files.song.type == 'audio/x-m4a') {
 		// TODO
+		res.send("OK, we're converting!");
+		exec('./bin/PROCESSM4A ' + req.files.song.path, { timeout: 0, maxBuffer: 10485760 }, function(err, stdout, stderr) {
+			console.log("Send e-mail");
+		});
+	}
+	else {
+		res.send(req.files.song);
 	}
 });
 
