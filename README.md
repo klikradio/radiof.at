@@ -4,9 +4,9 @@ Make your music sound like the radio.
 
 ## Dependencies
 
-These are currently a few basic dependencies...
+RadioFat will only run on **32-bit** Linux machines.  This is because [Stereo Tool](http://stereotool.com/) is not compiled for 64-bit machines.
 
- * Node.js
- * Python
+There are quite a few other dependencies that the INSTALL script will take care of for you (including Python, Node.js, sox, lame, lib-conv, and others)
 
-The install script will attempt to automatically install Node.js, but doesn't do anything for you for Python right now.  Eventually, Python may no longer be needed if we can find a robust meta data library for Node.js.
+## Configuration File
+In order to make the full web interface work, you'll need to make your own `config.json` file.  There is a `config.json.template` that you should start with.  This is where you'll define the port number, SendGrid information, and other variables needed to run RadioFat.
