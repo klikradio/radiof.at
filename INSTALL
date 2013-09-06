@@ -3,7 +3,8 @@ sudo apt-get install python-software-properties
 sudo add-apt-repository ppa:chris-lea/node.js
 
 # Install apt-get dependencies
-sudo apt-get install nodejs sox lame faad avconv
+sudo apt-get update
+sudo apt-get install nodejs sox lame faad libav-tools
 # TODO: make sure all the audio dependencies are in place
 
 # Install mutagen
@@ -19,6 +20,7 @@ cd ..
 # Install Stereo Tool
 cd bin
 wget http://www.stereotool.com/download/stereo_tool_cmd
+chmod +x stereo_tool_cmd
 cd ..
 
 # Install Node dependencies
