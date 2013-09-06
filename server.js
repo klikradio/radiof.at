@@ -1,4 +1,4 @@
-var DEBUG_PORT = 8000;
+var config = require('./config.json');
 
 var express = require('express');
 var sys = require('sys');
@@ -15,15 +15,18 @@ app.post('/', function(req, res) {
 	if (req.files.song.type == 'audio/mp3') {
 		// Convert an MP3
 		res.send("OK, we're converting!");
-		exec('./bin/PROCESSMP3 ' + req.files.song.path, { timeout: 0, maxBuffer: 10485760 }, function(err, stdout, stderr) {
+		exec('./PROCESSMP3 ' + req.files.song.path, { cwd: __dirname + '/bin/', timeout: 0, maxBuffer: 10485760 }, function(err, stdout, stderr) {
 			console.log("Send e-mail to this person!");
 		});
 	}
 	else if (req.files.song.type == 'audio/m4a' || req.files.song.type == 'audio/x-m4a') {
 		// TODO
 		res.send("OK, we're converting!");
-		exec('./bin/PROCESSM4A ' + req.files.song.path, { timeout: 0, maxBuffer: 10485760 }, function(err, stdout, stderr) {
+		exec('./PROCESSM4A ' + req.files.song.path, { cwd: __dirname + '/bin/', timeout: 0, maxBuffer: 10485760 }, function(err, stdout, stderr) {
 			console.log("Send e-mail");
+			console.log(err);
+			console.log(stdout);
+			console.log(stderr);
 		});
 	}
 	else {
@@ -31,4 +34,4 @@ app.post('/', function(req, res) {
 	}
 });
 
-app.listen(process.env.PORT || DEBUG_PORT);
+app.listen(config.port || process.env.PORT || 8000);
